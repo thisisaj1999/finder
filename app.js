@@ -9,6 +9,11 @@ app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
 // Routes
+
+app.get('/', (req, res) => {
+  console.log(__dirname);
+});
+
 app.post('/', async (req, res) => {
   try {
     const user = new Finder({
@@ -17,12 +22,11 @@ app.post('/', async (req, res) => {
     await user.save();
     res.status(201).render('warning', {
       warning: `"${req.body.username}" Added to the DataBase`,
-      colorHere: 'text-green-600',
     });
+    console.log(__dirname);
   } catch (error) {
     res.status(400).render('warning', {
       warning: `"${req.body.username}" Already exists`,
-      colorHere: 'text-red-600',
     });
   }
 });

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const url = `mongodb+srv://Atul:6199@nodeexpressprojects.vniqudy.mongodb.net/Finder?retryWrites=true&w=majority`;
+const url = process.env.MONGO_URI;
 
 mongoose
   .connect(url, {
